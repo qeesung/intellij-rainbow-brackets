@@ -13,6 +13,13 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      <p>2.5:</p>
+      <ul>
+        <li>Fix Rust support, thanks for https://github.com/fst3a </li>
+      </ul>
+      <p>2.4:</p>
+      <ul>
+        <li>Add support for SQL</li>
       <p>2.3.4:</p>
       <ul>
         <li>Add support for Rider 2017.3 (C# support). NOTE: this plugin ONLY work properly with Rider-2017.3 and above. For more information see here: https://github.com/izhangzhihao/intellij-rainbow-brackets/issues/6</li>
@@ -64,7 +71,7 @@
         <annotator language="Python" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="Haskell" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="Agda" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
-        <annotator language="RUST" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
+        <annotator language="Rust" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="JavaScript"
                    implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="Erlang" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
@@ -79,6 +86,7 @@
         <annotator language="C#" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="HTML" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="XML" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
+        <annotator language="SQL" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
     </extensions>
 
     <application-components>
