@@ -4,6 +4,7 @@ import com.github.izhangzhihao.rainbow.brackets.RainbowColors.angleBracketsColor
 import com.github.izhangzhihao.rainbow.brackets.RainbowColors.roundBracketsColor
 import com.github.izhangzhihao.rainbow.brackets.RainbowColors.squareBracketsColor
 import com.github.izhangzhihao.rainbow.brackets.RainbowColors.squigglyBracketsColor
+import com.github.izhangzhihao.rainbow.brackets.settings.RainbowSettings
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.openapi.editor.markup.TextAttributes
@@ -15,7 +16,7 @@ import java.awt.Font
 class RainbowBrackets : Annotator {
 
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
-        if (element is LeafPsiElement) {
+        if (settings.isRainbowEnabled && element is LeafPsiElement) {
             val level = getBracketLevel(element)
             if (level > 0) {
                 val attrs = Companion.getBracketAttributes(level, element.text)
@@ -25,6 +26,8 @@ class RainbowBrackets : Annotator {
     }
 
     companion object {
+
+        private val settings = RainbowSettings.instance
 
         private val roundBrackets = arrayOf("(", ")")
         private val squigglyBrackets = arrayOf("{", "}")
@@ -50,13 +53,11 @@ class RainbowBrackets : Annotator {
                 TextAttributes(getAttributesColor(level, bracket), null, null, null, Font.PLAIN)
 
         private fun getBracketLevel(element: LeafPsiElement) =
-                when {
-                    element.text in roundBrackets -> getBracketLevel(element, roundBrackets)
-                    element.text in squigglyBrackets -> getBracketLevel(element, squigglyBrackets)
-                    element.text in squareBrackets -> getBracketLevel(element, squareBrackets)
-                    element.text in angleBrackets -> getBracketLevel(element, angleBrackets)
-                    else -> 0
-                }
+                if (settings.isEnableRainbowRoundBrackets && element.text in roundBrackets) getBracketLevel(element, roundBrackets)
+                else if (settings.isEnableRainbowSquigglyBrackets && element.text in squigglyBrackets) getBracketLevel(element, squigglyBrackets)
+                else if (settings.isEnableRainbowSquareBrackets && element.text in squareBrackets) getBracketLevel(element, squareBrackets)
+                else if (settings.isEnableRainbowAngleBrackets && element.text in angleBrackets) getBracketLevel(element, angleBrackets)
+                else 0
 
         private fun getBracketLevel(psiElement: PsiElement, brackets: Array<String>): Int {
             var level = 0

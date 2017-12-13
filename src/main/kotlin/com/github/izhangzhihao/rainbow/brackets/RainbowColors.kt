@@ -9,8 +9,7 @@ object RainbowColors {
             Color(0, 169, 96),
             Color(252, 116, 130),
             Color(156, 39, 176),
-            Color(33, 150, 243),
-            Color(255, 59, 59)
+            Color(33, 150, 243)
     )
 
     val squareBracketsColor = arrayOf(
@@ -21,8 +20,8 @@ object RainbowColors {
 
     val squigglyBracketsColor = arrayOf(
             Color(25, 118, 210),
-            Color(150, 80, 150),
             Color(205, 220, 57),
+            Color(150, 80, 150),
             Color(255, 152, 99)
     )
 

@@ -18,6 +18,21 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      <p>3.0-RC2:</p>
+      <ul>
+        <li>Remove option for enable/disable rainbow for HTML/XML</li>
+      </ul>
+      <p>3.0-RC1:</p>
+      <ul>
+        <li>Add new setting page to control what/how to colorify:</li>
+        <li>1. Add option to Enable/disable rainbow</li>
+        <li>2. Add option to Enable rainbow for any unsupported languages</li>
+        <li>3. Add option to Enable/disable rainbow for HTML/XML</li>
+        <li>4. Add option to Enable/disable rainbow for round brackets</li>
+        <li>5. Add option to Enable/disable rainbow for squiggly brackets</li>
+        <li>6. Add option to Enable/disable rainbow for square brackets</li>
+        <li>7. Add option to Enable/disable rainbow for angle brackets</li>
+      </ul>
       <p>2.6:</p>
       <ul>
         <li>Add support for salesforce apex language, thanks for https://github.com/onisuly </li>
@@ -91,10 +106,17 @@
         <annotator language="Apex" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="SalesForce.Apex"
                    implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
+
+        <applicationConfigurable instance="com.github.izhangzhihao.rainbow.brackets.settings.RainbowConfigurable"/>
+        <applicationService serviceInterface="com.github.izhangzhihao.rainbow.brackets.settings.RainbowSettings"
+                            serviceImplementation="com.github.izhangzhihao.rainbow.brackets.settings.RainbowSettings"/>
     </extensions>
 
     <application-components>
         <!-- Add your application components here -->
+        <component>
+            <implementation-class>com.github.izhangzhihao.rainbow.brackets.RainbowComponent</implementation-class>
+        </component>
     </application-components>
 
     <project-components>
