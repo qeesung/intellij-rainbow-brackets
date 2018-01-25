@@ -1,4 +1,4 @@
-<idea-plugin version="2">
+<idea-plugin>
     <id>izhangzhihao.rainbow.brackets</id>
     <name>Rainbow Brackets</name>
     <vendor email="izhangzhihao@hotmail.com" url="https://github.com/izhangzhihao">izhangzhihao</vendor>
@@ -9,8 +9,6 @@
         <p>Supported languages:</p>
         <p>Java, Scala, Clojure, Kotlin, Python, Haskell, Agda, Rust, JavaScript, TypeScript, Erlang, Go, Groovy, Ruby, Elixir, ObjectiveC, PHP, C#, HTML, XML, SQL, Apex language ...</p>
         <br/>
-        <p>This plugin is also compatible with material-theme-jetbrains-eap</p>
-        <br/>
         <p><img src="https://raw.githubusercontent.com/izhangzhihao/intellij-rainbow-brackets/IC-2017.2/screenshots/with-scala.png" alt="with-scala"/></p>
         <p><img src="https://raw.githubusercontent.com/izhangzhihao/intellij-rainbow-brackets/IC-2017.2/screenshots/with-kotlin.png" alt="with-kotlin"/></p>
         <p><img src="https://raw.githubusercontent.com/izhangzhihao/intellij-rainbow-brackets/IC-2017.2/screenshots/with-material-theme-ui.png" alt="with-material-theme-ui.png"/></p>
@@ -18,6 +16,35 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      <p>3.1</p>
+      <ul>
+        <li>Add specific implement for PHP language</li>
+      </ul>
+      <br/>
+      <p>3.0</p>
+      <ul>
+        <li>Version 3.0 has been released, with all RC features & bug fix</li>
+        <li>Fix #23 Inconsistent colors</li>
+        <li>Fix #21 Wrong bracket colorization based on spaces</li>
+        <li>Fix #19 Kotlin expression inside string bug</li>
+        <li>Fix #12 Symbol less ">" is considered as a bracket even without leading "<"</li>
+        <li>Fix #11 Same level brackets should have same color</li>
+        <li>And much more!</li>
+        <li>Add specific implement for java/kotlin/scala/javascript</li>
+        <li>Add example to help people add specific implementation for specific language! </li>
+        <li>Check out README.md on github https://github.com/izhangzhihao/intellij-rainbow-brackets</li>
+      </ul>
+      <br/>
+      <p>3.0-RC5:</p>
+      <ul>
+        <li>Adjust colors for default light theme. Thanks to https://github.com/YiiGuxing</li>
+      </ul>
+      <p>3.0-RC4:</p>
+      <ul>
+        <li>Add specific implement for java/kotlin/scala</li>
+        <li>So now in java/kotlin/scala same level brackets should have same color.</li>
+        <li>Fix: #19:Kotlin expression inside string bug</li>
+      </ul>
       <p>3.0-RC2:</p>
       <ul>
         <li>Remove option for enable/disable rainbow for HTML/XML</li>
@@ -78,27 +105,28 @@
     <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
          on how to target different products -->
     <depends>com.intellij.modules.lang</depends>
+    <depends optional="true" config-file="java-annotator.xml">com.intellij.modules.java</depends>
+    <depends optional="true" config-file="kotlin-annotator.xml">org.jetbrains.kotlin</depends>
+    <depends optional="true" config-file="php-annotator.xml">com.jetbrains.php</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
+        <annotator language="Scala"
+                   implementationClass="com.github.izhangzhihao.rainbow.brackets.specific.RainbowScala"/>
+        <annotator language="JavaScript" implementationClass="com.github.izhangzhihao.rainbow.brackets.specific.RainbowJS"/>
+
         <annotator language="Clojure" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
-        <annotator language="JAVA" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
-        <annotator language="kotlin" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="Python" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="Haskell" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="Agda" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="Rust" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
-        <annotator language="JavaScript"
-                   implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="Erlang" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
-        <annotator language="Scala" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="go" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="Groovy" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="ruby" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="Elixir" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="ObjectiveC"
                    implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
-        <annotator language="PHP" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="C#" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="HTML" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
         <annotator language="XML" implementationClass="com.github.izhangzhihao.rainbow.brackets.RainbowBrackets"/>
